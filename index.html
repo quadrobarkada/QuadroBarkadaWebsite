@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Quadro Barkada</title>
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+
+  <!-- AOS -->
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Tailwind (Play CDN), dark mode by class -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ['"Space Grotesk"', 'sans-serif'],
+            sans: ['Poppins', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+
+  <style>
+    /* tiny bits Tailwind classes can't do alone */
+    .hero-glow {
+      background:
+        radial-gradient(40rem 20rem at 15% 10%, rgba(99,102,241,.25), transparent 60%),
+        radial-gradient(40rem 20rem at 85% 20%, rgba(244,63,94,.18), transparent 60%),
+        radial-gradient(40rem 20rem at 50% 90%, rgba(16,185,129,.15), transparent 60%);
+    }
+    .sortable-ghost { opacity: .35; }
+    .member-card { transition: transform .2s, box-shadow .2s, opacity .3s; }
+    .member-card:hover { transform: translateY(-4px); }
+    .member-card.is-hidden { display: none; }
+  </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 dark:bg-slate-950 dark:text-slate-100 font-sans transition-colors">
+
+  <!-- HEADER -->
+  <header class="sticky top-0 z-50 bg-white/80 dark:bg-slate-950/80 backdrop-blur border-b border-slate-200 dark:border-slate-800">
+    <nav class="max-w-6xl mx-auto flex items-center justify-between p-4">
+      <a href="#" class="font-display font-bold text-xl flex items-center gap-2">
+        <i data-lucide="users" class="text-indigo-500"></i> Quadro Barkada
+      </a>
+      <ul class="hidden sm:flex gap-6 text-sm">
+        <li><a href="#squad" class="hover:text-indigo-500">The Squad</a></li>
+        <li><a href="#common" class="hover:text-indigo-500">Common Ground</a></li>
+        <li><a href="#footer" class="hover:text-indigo-500">About</a></li>
+      </ul>
+      <button id="theme-toggle" class="p-2 rounded-lg hover:bg-slate-200 dark:hover:bg-slate-800" aria-label="Toggle theme">
+        <i data-lucide="sun"></i>
+      </button>
+    </nav>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero-glow">
+      <div class="max-w-6xl mx-auto px-4 py-24 sm:py-32 text-center" data-aos="fade-up">
+        <p class="font-display tracking-widest text-sm uppercase text-indigo-500 mb-4">4 friends. 1 squad.</p>
+        <h1 class="font-display text-5xl sm:text-7xl font-bold mb-6">
+          Quadro <span class="bg-gradient-to-r from-indigo-500 via-rose-500 to-emerald-500 bg-clip-text text-transparent">Barkada</span>
+        </h1>
+        <p class="max-w-2xl mx-auto text-lg text-slate-600 dark:text-slate-400 mb-10">
+          Coders, gamers, athletes, musicians, and problem-solvers. Meet the four of us,
+          and see what we have in common.
+        </p>
+        <a href="#squad" class="inline-flex items-center gap-2 bg-indigo-500 hover:bg-indigo-600 text-white px-6 py-3 rounded-lg font-semibold">
+          Meet the squad <i data-lucide="arrow-down" class="w-4 h-4"></i>
+        </a>
+
+        <!-- stats are filled in by script.js -->
+        <div id="stats" class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto"></div>
+
+        <!-- YouTube video (filled in by script.js, set the link in the VIDEO object) -->
+        <div id="video-wrap" class="mt-16 max-w-3xl mx-auto" data-aos="zoom-in"></div>
+      </div>
+    </section>
+
+    <!-- THE SQUAD -->
+    <section id="squad" class="max-w-6xl mx-auto px-4 py-20">
+      <div class="text-center mb-10" data-aos="fade-up">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">The Squad</h2>
+        <p class="text-slate-500 dark:text-slate-400">
+          Filter by a shared interest, or drag the cards to reorder them.
+        </p>
+      </div>
+
+      <!-- filter chips are filled in by script.js -->
+      <div id="filters" class="flex flex-wrap justify-center gap-2 mb-10" data-aos="fade-up"></div>
+
+      <!-- member cards are filled in by script.js -->
+      <div id="member-grid" class="grid gap-6 md:grid-cols-2"></div>
+    </section>
+
+    <!-- COMMON GROUND -->
+    <section id="common" class="max-w-6xl mx-auto px-4 py-20">
+      <div class="text-center mb-10" data-aos="fade-up">
+        <h2 class="font-display text-3xl sm:text-4xl font-bold mb-2">Common Ground</h2>
+        <p class="text-slate-500 dark:text-slate-400">What connects the four of us.</p>
+      </div>
+      <div id="common-grid" class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3"></div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer id="footer" class="border-t border-slate-200 dark:border-slate-800 py-10 text-center text-sm text-slate-500">
+    <i data-lucide="heart" class="mx-auto mb-3 text-rose-500"></i>
+    Made by Quadro Barkada &middot; e-Tech 2026
+  </footer>
+
+  <!-- Scripts (order matters) -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sortablejs@1.15.2/Sortable.min.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
